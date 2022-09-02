@@ -103,3 +103,18 @@ exo dns add A a1ck.io -a <wc ingress lb ip> -n \*.<your domain>
 ```
 ./scripts/S3/entry.sh --s3cfg $CK8S_CONFIG_PATH/.state/s3cfg.ini create
 ```
+
+
+### Clean up
+
+**apps**
+
+```
+./scripts/clean-wc.sh
+./scripts/clean-sc.sh
+```
+
+**terraform**
+```
+terraform destroy -var-file=cluster.tfvars $MODULE_PATH_TERRAFORM
+```
