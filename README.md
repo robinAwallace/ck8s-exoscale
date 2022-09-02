@@ -67,3 +67,39 @@ ssh-keygen
 gpg --full-generate-key
 ```
 
+### Install
+
+**envs to set**
+
+```
+export CK8S_CONFIG_PATH=$(pwd)
+export MODULE_PATH_TERRAFORM=<path to ck8s-kubespray>/compliantkubernetes-kubespray/kubespray/contrib/terraform/exoscale
+export CK8S_CLOUD_PROVIDER=exoscale
+export CK8S_FLAVOR=prod
+export CK8S_ENVIRONMENT_NAME=<your env name>
+export CK8S_PGP_FP=<your gpg key>
+```
+
+**terraform**
+```
+terraform init -var-file=cluster.tfvars $MODULE_PATH_TERRAFORM
+terraform apply -var-file=cluster.tfvars $MODULE_PATH_TERRAFORM
+```
+
+**exo dns to set**
+```
+exo dns add A a1ck.io -a <sc ingress lb ip> -n \*.ops.<your domain>
+exo dns add A a1ck.io -a <sc ingress lb ip> -n opensearch.<your domain>
+exo dns add A a1ck.io -a <sc ingress lb ip> -n dex.<your domain>
+exo dns add A a1ck.io -a <sc ingress lb ip> -n harbor.<your domain>
+exo dns add A a1ck.io -a <sc ingress lb ip> -n notary.harbor.<your domain>
+exo dns add A a1ck.io -a <sc ingress lb ip> -n grafana.<your domain>
+exo dns add A a1ck.io -a <sc ingress lb ip> -n grafana.ops.<your domain>
+exo dns add A a1ck.io -a <sc ingress lb ip> -n grafana.<your domain>
+exo dns add A a1ck.io -a <wc ingress lb ip> -n \*.<your domain>
+```
+
+**Create buckets**
+```
+./scripts/S3/entry.sh --s3cfg $CK8S_CONFIG_PATH/.state/s3cfg.ini create
+```
