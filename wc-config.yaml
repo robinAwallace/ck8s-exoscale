@@ -1,0 +1,13 @@
+# Changes made here will override the default values as well as the common config for this cluster.
+    # See the default configuration under "defaults/" to see available and suggested options.
+user:
+  namespaces:
+    - production
+    - staging
+  adminUsers: []
+  adminGroups: []
+opa:
+  imageRegistry:
+    URL:
+      - harbor.set-me.a1ck.io
+      - quay.io/jetstack/cert-manager-acmesolver

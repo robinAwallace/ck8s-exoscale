@@ -1,0 +1,55 @@
+# Changes made here will override the default values as well as the common config for this cluster.
+    # See the default configuration under "defaults/" to see available and suggested options.
+user:
+  grafana:
+    oidc:
+      allowedDomains:
+        - elastisys.com
+opensearch:
+  extraRoleMappings:
+    - mapping_name: readall_and_monitor
+      definition:
+        users:
+          - set-me
+    - mapping_name: kibana_user
+      definition:
+        users:
+          - set-me
+    - mapping_name: kubernetes_log_reader
+      definition:
+        users:
+          - set-me
+    - mapping_name: all_access
+      definition:
+        users:
+          - set-me
+    - mapping_name: alerting_ack_alerts
+      definition:
+        users:
+          - set-me
+    - mapping_name: alerting_read_access
+      definition:
+        users:
+          - set-me
+    - mapping_name: alerting_full_access
+      definition:
+        users:
+          - set-me
+harbor:
+  oidc:
+    groupClaimName: not-used
+    adminGroupName: not-used
+alerts:
+  opsGenieHeartbeat:
+    name: not-used
+prometheus:
+  grafana:
+    oidc:
+      enabled: true
+      userGroups:
+        grafanaAdmin: grafana_admin
+        grafanaEditor: grafana_editor
+        grafanaViewer: grafana_viewer
+      scopes: profile email openid groups
+      allowedDomains:
+        - elastisys.com

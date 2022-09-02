@@ -1,0 +1,19 @@
+# Changes made here will override the default values for both the service and workload cluster.
+    # See the default configuration under "defaults/" to see available and suggested options.
+global:
+  baseDomain: set-me.a1ck.io
+  opsDomain: ops.set-me.a1ck.io
+objectStorage:
+  s3:
+    region: ch-gva-2
+    regionEndpoint: https://sos-ch-gva-2.exo.io
+    forcePathStyle: true
+issuers:
+  letsencrypt:
+    prod:
+      email: set-me
+    staging:
+      email: set-me
+clusterAdmin:
+  users:
+    - not-used
